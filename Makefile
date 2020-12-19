@@ -14,7 +14,7 @@ build:
 	docker build -t $(REGISTRY)/$(IMAGE):$(TAG) -f Dockerfile .
 
 run: build
-	docker run -it $(REGISTRY)/$(IMAGE):$(TAG) /bin/bash
+	docker run -it --rm --runtime=nvidia $(REGISTRY)/$(IMAGE):$(TAG) python3 -c "from tensorflow.python.client import device_lib; print(device_lib.list_local_devices())"
 
 dump: build
 	docker save $(REGISTRY)/$(IMAGE):$(TAG) | gzip > $(IMAGE).tar.gz
