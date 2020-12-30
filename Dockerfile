@@ -16,5 +16,4 @@ RUN wget -O tensorrt.deb -nv http://172.17.0.1:8080/nv-tensorrt-repo-ubuntu1804-
     dpkg -i tensorrt.deb && \
     rm -rf tensorrt.deb
 
-COPY *.txt /
-RUN pip3 install -r requirements.txt --trusted-host pypi.org --trusted-host files.pythonhosted.org
+RUN pip3 install http://172.17.0.1:8080/tensorflow-2.3.1-cp36-cp36m-linux_x86_64.whl --trusted-host pypi.org --trusted-host files.pythonhosted.org
